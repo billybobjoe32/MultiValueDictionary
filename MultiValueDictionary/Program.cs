@@ -2,12 +2,12 @@
 using MultiValueDictionaryApp;
 
 MultiValueDictionary mvd = new MultiValueDictionary();
-Console.WriteLine("Hello, World!");
+Console.Write("> ");
 string? input = Console.ReadLine();
 while(input == null || !input.ToLower().StartsWith("quit"))
 {
     string output = mvd.ProcessRequest(input);
     Console.WriteLine(output);
     Console.Write("> ");
-    Console.ReadLine();
+    input = Console.ReadLine();
 }
