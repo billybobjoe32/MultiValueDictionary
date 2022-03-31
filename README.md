@@ -1,4 +1,11 @@
-# MultiValueDictionary
-Spreetail Repo for coding exam
+# App Overview
 
-This is a .NET 6.0 console application built in VS 2022.
+Spreetail Repo for coding exam built on .NET 6.0
+
+# Build
+
+`dotnet build`
+
+# Run
+
+`dotnet run`
