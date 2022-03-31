@@ -15,7 +15,7 @@ namespace MultiValueDictionaryTests
         {
             MultiValueDictionary mvp = new MultiValueDictionary();
             string output = mvp.ProcessRequest("members foo");
-            Assert.AreEqual("ERROR, key does not exist.", output);
+            Assert.AreEqual(") ERROR, key does not exist.", output);
         }
         [Test]
         public void MembersRequestValue()
@@ -23,14 +23,16 @@ namespace MultiValueDictionaryTests
             MultiValueDictionary mvp = AppTests.InitializeClass();
             mvp.ProcessRequest("add foo baz");
             string output = mvp.ProcessRequest("members foo");
-            Assert.AreEqual("1) bar\r\n2) baz", output);
+            output = output.Replace("\r", "");
+            output = output.Replace("\n", "");
+            Assert.AreEqual("1) bar2) baz", output);
         }
         [Test]
         public void MembersWrongParameters()
         {
             MultiValueDictionary mvp = new MultiValueDictionary();
             string output = mvp.ProcessRequest("members foo bar");
-            Assert.AreEqual("MEMBERS command only allows for one parameter", output);
+            Assert.AreEqual(") MEMBERS command only allows for one parameter", output);
         }
     }
 }

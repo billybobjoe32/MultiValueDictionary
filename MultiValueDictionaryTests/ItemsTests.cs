@@ -18,14 +18,16 @@ namespace MultiValueDictionaryTests
             mvp.ProcessRequest("add bang bar");
             mvp.ProcessRequest("add bang baz");
             string output = mvp.ProcessRequest("items");
-            Assert.AreEqual("1) foo: bar\r\n2) foo: baz\r\n3) bang: bar\r\n4) bang: baz", output);
+            output = output.Replace("\r", "");
+            output = output.Replace("\n", "");
+            Assert.AreEqual("1) foo: bar2) foo: baz3) bang: bar4) bang: baz", output);
         }
         [Test]
         public void ItemsRequestEmptySet()
         {
             MultiValueDictionary mvp = new MultiValueDictionary();
             string output = mvp.ProcessRequest("items");
-            Assert.AreEqual("empty set", output);
+            Assert.AreEqual("(empty set)", output);
         }
     }
 }

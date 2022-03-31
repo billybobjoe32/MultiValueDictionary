@@ -15,21 +15,21 @@ namespace MultiValueDictionaryTests
         {
             MultiValueDictionary mvp = AppTests.InitializeClass();
             string output = mvp.ProcessRequest("memberexists foo bar");
-            Assert.AreEqual("true", output);
+            Assert.AreEqual(") true", output);
         }
         [Test]
         public void MemberExistsRequestFalse()
         {
             MultiValueDictionary mvp = AppTests.InitializeClass();
             string output = mvp.ProcessRequest("memberexists doo bar");
-            Assert.AreEqual("false", output);
+            Assert.AreEqual(") false", output);
         }
         [Test]
         public void MemberRequestWrongParameters()
         {
             MultiValueDictionary mvp = new MultiValueDictionary();
             string output = mvp.ProcessRequest("memberexists too");
-            Assert.AreEqual("MEMBEREXISTS command only allows for two parameters", output);
+            Assert.AreEqual(") MEMBEREXISTS command only allows for two parameters", output);
         }
     }
 }

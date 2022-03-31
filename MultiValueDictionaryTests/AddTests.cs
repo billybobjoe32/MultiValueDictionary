@@ -15,21 +15,21 @@ namespace MultiValueDictionaryTests
         {
             MultiValueDictionary mvp = new MultiValueDictionary();
             string output = mvp.ProcessRequest("add foo bar");
-            Assert.IsTrue(mvp.Dictionary.ContainsKey("foo") && mvp.Dictionary["foo"].Contains("bar") && output == "Added");
+            Assert.IsTrue(mvp.Dictionary.ContainsKey("foo") && mvp.Dictionary["foo"].Contains("bar") && output == ") Added");
         }
         [Test]
         public void AddRequestValueAlreadyExists()
         {
             MultiValueDictionary mvp = AppTests.InitializeClass();
             string output = mvp.ProcessRequest("add foo bar");
-            Assert.AreEqual("ERROR, member already exists for key", output);
+            Assert.AreEqual(") ERROR, member already exists for key", output);
         }
         [Test]
         public void AddRequestWrongParameters()
         {
             MultiValueDictionary mvp = new MultiValueDictionary();
             string output = mvp.ProcessRequest("add foo");
-            Assert.AreEqual("ADD command only allows for two parameters", output);
+            Assert.AreEqual(") ADD command only allows for two parameters", output);
         }
     }
 }

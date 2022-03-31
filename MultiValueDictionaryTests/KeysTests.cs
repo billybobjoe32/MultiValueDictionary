@@ -15,7 +15,7 @@ namespace MultiValueDictionaryTests
         {
             MultiValueDictionary mvp = new MultiValueDictionary();
             string output = mvp.ProcessRequest("keys");
-            Assert.AreEqual("empty set", output);
+            Assert.AreEqual("(empty set)", output);
         }
         [Test]
         public void KeysRequestValue()

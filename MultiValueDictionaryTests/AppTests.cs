@@ -17,21 +17,21 @@ namespace MultiValueDictionaryTests
         {
             MultiValueDictionary mvp = new MultiValueDictionary();
             string output = mvp.ProcessRequest(null);
-            Assert.AreEqual("Command not recognized, please try again.", output);
+            Assert.AreEqual(") Command not recognized, please try again.", output);
         }
         [Test]
         public void InvalidInput()
         {
             MultiValueDictionary mvp = new MultiValueDictionary();
             string output = mvp.ProcessRequest("something");
-            Assert.AreEqual("Command not recognized, please try again.", output);
+            Assert.AreEqual(") Command not recognized, please try again.", output);
         }
         [Test]
         public void QuitRequestGood()
         {
             MultiValueDictionary mvp = new MultiValueDictionary();
             string output = mvp.ProcessRequest("quit");
-            Assert.AreEqual("Thanks for using the MultiValueDictionary app!", output);
+            Assert.AreEqual(") Thanks for using the MultiValueDictionary app!", output);
         }
     }
 }
