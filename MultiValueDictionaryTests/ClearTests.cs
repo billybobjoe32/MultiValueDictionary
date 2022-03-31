@@ -15,7 +15,7 @@ namespace MultiValueDictionaryTests
         {
             MultiValueDictionary mvp = AppTests.InitializeClass();
             string output = mvp.ProcessRequest("clear");
-            Assert.AreEqual("Cleared", output);
+            Assert.AreEqual(") Cleared", output);
             Assert.IsTrue(mvp.Dictionary.Count == 0);
         }
     }

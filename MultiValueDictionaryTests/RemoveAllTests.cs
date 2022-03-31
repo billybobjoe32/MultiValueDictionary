@@ -16,7 +16,7 @@ namespace MultiValueDictionaryTests
             MultiValueDictionary mvp = AppTests.InitializeClass();
             mvp.ProcessRequest("add foo baz");
             string output = mvp.ProcessRequest("removeall foo");
-            Assert.AreEqual("Removed", output);
+            Assert.AreEqual(") Removed", output);
             Assert.IsTrue(!mvp.Dictionary.ContainsKey("foo"));
         }
         [Test]
@@ -24,14 +24,14 @@ namespace MultiValueDictionaryTests
         {
             MultiValueDictionary mvp = AppTests.InitializeClass();
             string output = mvp.ProcessRequest("removeall doo");
-            Assert.AreEqual("ERROR, key does not exist.", output);
+            Assert.AreEqual(") ERROR, key does not exist.", output);
         }
         [Test]
         public void RemoveAllRequestWrongParameters()
         {
             MultiValueDictionary mvp = new MultiValueDictionary();
             string output = mvp.ProcessRequest("removeall foo too");
-            Assert.AreEqual("REMOVEALL command only allows for one parameter", output);
+            Assert.AreEqual(") REMOVEALL command only allows for one parameter", output);
         }
     }
 }

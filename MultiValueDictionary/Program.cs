@@ -8,5 +8,6 @@ while(input == null || !input.ToLower().StartsWith("quit"))
 {
     string output = mvd.ProcessRequest(input);
     Console.WriteLine(output);
+    Console.Write("> ");
     Console.ReadLine();
 }
