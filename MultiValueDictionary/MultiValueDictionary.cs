@@ -14,6 +14,7 @@ namespace MultiValueDictionaryApp
         private const string ERROR_MEMBER_ALREADY_EXISTS_FOR_KEY = ") ERROR, member already exists for key";
         private const string INVALID_NUMBER_OF_PARAMETERS_ONE = " command only allows for one parameter";
         private const string INVALID_NUMBER_OF_PARAMETERS_TWO = " command only allows for two parameters";
+        private const string INVALID_NUMBER_OF_PARAMETERS_AT_LEAST_ONE = " command has to have at least one parameter";
         private const string INVALID_COMMAND = ") Command not recognized, please try again.";
         private const string ADDED = ") Added";
         private const string REMOVED = ") Removed";
@@ -32,17 +33,29 @@ namespace MultiValueDictionaryApp
             {
                 return INVALID_COMMAND;
             }
-            string[] splitCommand = request.Split(' ');
+            List<string> splitCommand = request.Split(' ').ToList();
             string command = splitCommand[0].ToLower();
             string output;
             switch (command)
             {
+                case "keymembers":
+                    if (splitCommand.Count >= 2)
+                    {
+                        splitCommand.RemoveAt(0);
+                        output = KeyMembers(splitCommand);
+                        output = output.Trim();
+                        return output;
+                    }
+                    else
+                    {
+                        return $") {command.ToUpper()}{INVALID_NUMBER_OF_PARAMETERS_AT_LEAST_ONE}";
+                    }
                 case "keys":
                     output = Keys();
                     output = output.Trim();
                     return output;
                 case "members":
-                    if (splitCommand.Length == 2)
+                    if (splitCommand.Count == 2)
                     {
                         output = Members(splitCommand[1]);
                         output = output.Trim();
@@ -53,7 +66,7 @@ namespace MultiValueDictionaryApp
                         return $") {command.ToUpper()}{INVALID_NUMBER_OF_PARAMETERS_ONE}";
                     }
                 case "add":
-                    if(splitCommand.Length == 3)
+                    if(splitCommand.Count == 3)
                     {
                         return Add(splitCommand[1], splitCommand[2]);
                     }
@@ -62,7 +75,7 @@ namespace MultiValueDictionaryApp
                         return $") {command.ToUpper()}{INVALID_NUMBER_OF_PARAMETERS_TWO}";
                     }
                 case "remove":
-                    if (splitCommand.Length == 3)
+                    if (splitCommand.Count == 3)
                     {
                         return Remove(splitCommand[1], splitCommand[2]);
                     }
@@ -71,7 +84,7 @@ namespace MultiValueDictionaryApp
                         return $") {command.ToUpper()}{INVALID_NUMBER_OF_PARAMETERS_TWO}";
                     }
                 case "removeall":
-                    if (splitCommand.Length == 2)
+                    if (splitCommand.Count == 2)
                     {
                         return RemoveAll(splitCommand[1]);
                     }
@@ -82,7 +95,7 @@ namespace MultiValueDictionaryApp
                 case "clear":
                     return Clear();
                 case "keyexists":
-                    if (splitCommand.Length == 2)
+                    if (splitCommand.Count == 2)
                     {
                         return KeyExists(splitCommand[1]);
                     }
@@ -91,7 +104,7 @@ namespace MultiValueDictionaryApp
                         return $") {command.ToUpper()}{INVALID_NUMBER_OF_PARAMETERS_ONE}";
                     }
                 case "memberexists":
-                    if (splitCommand.Length == 3)
+                    if (splitCommand.Count == 3)
                     {
                         return MemberExists(splitCommand[1], splitCommand[2]);
                     }
@@ -112,6 +125,31 @@ namespace MultiValueDictionaryApp
                 default:
                     return INVALID_COMMAND;
             }
+        }
+
+        private string KeyMembers(List<string> keys)
+        {
+            if (Dictionary.Count == 0)
+            {
+                return EMPTY_SET;
+            }
+            StringBuilder sb = new StringBuilder();
+            int count = 1;
+            foreach(string key in keys)
+            {
+                if (Dictionary.ContainsKey(key))
+                {
+                    foreach(string value in Dictionary[key])
+                    {
+                        sb.AppendLine($"{count++}) {key}: {value}");
+                    }
+                }
+            }
+            if(count == 1)
+            {
+                return EMPTY_SET;
+            }
+            return sb.ToString();
         }
 
         private string Items()
