@@ -18,7 +18,7 @@ namespace MultiValueDictionaryApp
         private const string ADDED = ") Added";
         private const string REMOVED = ") Removed";
         private const string CLEARED = ") Cleared";
-        private const string THANS_FOR_USING_THE_APP = ") Thanks for using the MultiValueDictionary app!";
+        private const string QUIT_THANKS_FOR_USING_THE_APP = ") Thanks for using the MultiValueDictionary app!";
         public Dictionary<string, List<string>> Dictionary { get; set; }
 
         public MultiValueDictionary()
@@ -108,7 +108,7 @@ namespace MultiValueDictionaryApp
                     output = output.Trim();
                     return output;
                 case "quit":
-                    return THANS_FOR_USING_THE_APP;
+                    return QUIT_THANKS_FOR_USING_THE_APP;
                 default:
                     return INVALID_COMMAND;
             }
