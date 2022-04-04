@@ -158,12 +158,14 @@ namespace MultiValueDictionaryApp
 
         private string MemberExists(string key, string value)
         {
-            return ") " + (Dictionary.ContainsKey(key) && Dictionary[key].Contains(value)).ToString().ToLower();
+            bool memberExists = (Dictionary.ContainsKey(key) && Dictionary[key].Contains(value));
+            return ") " + memberExists.ToString().ToLower();
         }
 
         private string KeyExists(string key)
         {
-            return ") " + Dictionary.ContainsKey(key).ToString().ToLower();
+            bool keyExists = Dictionary.ContainsKey(key);
+            return ") " + keyExists.ToString().ToLower();
         }
 
         private string Clear()
